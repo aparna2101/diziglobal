@@ -1,10 +1,11 @@
 import { CheckCircle2 } from "lucide-react";
 
 const features = [
-  "Agile development methodology",
-  "Dedicated project managers",
-  "24/7 support & maintenance",
-  "Scalable architecture",
+  "Fast",
+  "Mobile-responsive",
+  "Secure",
+  "SEO-optimized",
+  "Conversion-focused"
 ];
 
 const AboutSection = () => (
@@ -32,10 +33,16 @@ const AboutSection = () => (
         <div>
           <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-secondary">Who We Are</span>
           <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
-            Your Trusted Technology Partner
+            
+Top Website Design Company in Oman – Build Your Digital Identity With Confidence
+
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            At Dizi Global Solutions, we combine creativity with technical expertise to deliver solutions that drive real business results. Our multidisciplinary team of designers, developers, and strategists work together to transform your ideas into impactful digital products.
+           We help businesses across Oman build powerful digital presences that turn visitors into customers. At Dizi Global Solution, our team of expert web designers and developers combine creativity, strategy, and cutting-edge technology to deliver websites.
+
+<br></br>Whether you’re a startup in Muscat or an established business in Salalah — we have the perfect website solution for you.
+<br></br>
+We understand the unique business culture of both Oman and the UAE, which allows us to create websites that match regional customer behavior, language preferences, and industry expectations. From modern corporate sites to high-performing online stores, Dizi Global Solution ensures your brand stands out with a digital presence that looks professional, loads quickly, and drives real results.
           </p>
           <ul className="mt-6 space-y-3">
             {features.map((f) => (

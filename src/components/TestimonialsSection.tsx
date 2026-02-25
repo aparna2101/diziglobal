@@ -1,55 +1,95 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { testimonials } from "@/data/siteData";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const TestimonialsSection = () => {
-  const [current, setCurrent] = useState(0);
-  const total = testimonials.length;
+  const [index, setIndex] = useState(0);
 
-  const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
-  const prev = () => setCurrent((c) => (c - 1 + total) % total);
+  const next = () => {
+    setIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
-  useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [next]);
+  const prev = () => {
+    setIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
 
-  const t = testimonials[current];
+  const visible = [
+    testimonials[index],
+    testimonials[(index + 1) % testimonials.length],
+    testimonials[(index + 2) % testimonials.length],
+  ];
 
   return (
-    <section className="section-padding bg-primary/5">
-      <div className="container-custom">
-        <div className="mb-12 text-center">
-          <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-secondary">Testimonials</span>
-          <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">What Our Clients Say</h2>
-        </div>
+    <section className="bg-[#0f4c63] py-20 text-white relative overflow-hidden">
+      <div className="container-custom text-center relative">
 
-        <div className="relative mx-auto max-w-2xl">
-          <div className="rounded-2xl border border-border bg-card p-8 text-center shadow-lg md:p-12">
-            <Quote className="mx-auto mb-4 h-8 w-8 text-primary/30" />
-            <p className="text-lg leading-relaxed text-card-foreground">&ldquo;{t.review}&rdquo;</p>
-            <div className="mt-6 flex flex-col items-center gap-3">
-              <img src={t.image} alt={t.name} className="h-14 w-14 rounded-full object-cover ring-2 ring-primary/20" loading="lazy" />
-              <div>
-                <p className="font-display font-bold text-card-foreground">{t.name}</p>
-                <p className="text-sm text-muted-foreground">{t.role}</p>
+        <p className="text-lime-400 font-semibold uppercase tracking-widest mb-3">
+          Testimonials
+        </p>
+
+        <h2 className="text-4xl font-bold mb-14">
+          Trusted By Businesses Across Oman
+        </h2>
+
+        {/* arrows */}
+        <button
+          onClick={prev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 p-3 rounded-full hover:bg-white/30"
+        >
+          <ChevronLeft />
+        </button>
+
+        <button
+          onClick={next}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 p-3 rounded-full hover:bg-white/30"
+        >
+          <ChevronRight />
+        </button>
+
+        {/* cards */}
+        <div className="grid md:grid-cols-3 gap-8 px-12">
+
+          {visible.map((t, i) => (
+            <div
+              key={i}
+              className="bg-white text-gray-800 rounded-2xl p-8 shadow-xl hover:-translate-y-2 transition-all duration-300"
+            >
+              <span className="text-lime-500 text-5xl mb-4 block">❝</span>
+
+              <p className="text-sm leading-relaxed mb-6">
+                {t.message}
+              </p>
+
+              <img
+                src={t.image}
+                alt={t.name}
+                className="w-16 h-16 rounded-full mx-auto mb-3 object-cover"
+              />
+
+              <h4 className="font-semibold">{t.name}</h4>
+              <p className="text-xs text-gray-500 mb-3">{t.city}</p>
+
+              <div className="flex justify-center gap-1 text-yellow-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
+                ))}
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <button onClick={prev} className="rounded-full border border-border bg-card p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="Previous testimonial">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button key={i} onClick={() => setCurrent(i)} className={`h-2.5 w-2.5 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-border"}`} aria-label={`Go to testimonial ${i + 1}`} />
-              ))}
-            </div>
-            <button onClick={next} className="rounded-full border border-border bg-card p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="Next testimonial">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+        {/* dots */}
+        <div className="flex justify-center gap-2 mt-10">
+          {testimonials.map((_, i) => (
+            <span
+              key={i}
+              className={`h-2 w-2 rounded-full ${
+                i === index ? "bg-lime-400 w-5" : "bg-white/40"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

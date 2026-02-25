@@ -9,7 +9,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Invalid email address").max(255),
   phone: z.string().trim().min(1, "Phone is required").max(20),
-  message: z.string().trim().min(1, "Message is required").max(1000),
+
 });
 
 interface ContactFormProps {
@@ -56,10 +56,7 @@ const ContactForm = ({ compact = false }: ContactFormProps) => {
         <Input name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} className={compact ? "h-9 text-sm" : ""} />
         {errors.phone && <p className="mt-1 text-xs text-destructive">{errors.phone}</p>}
       </div>
-      <div>
-        <Textarea name="message" placeholder="Your Message" value={form.message} onChange={handleChange} rows={compact ? 3 : 4} className={compact ? "text-sm" : ""} />
-        {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
-      </div>
+     
       <Button type="submit" className="w-full">{compact ? "Send" : "Send Message"}</Button>
     </form>
   );

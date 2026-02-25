@@ -1,31 +1,50 @@
 import { portfolioItems } from "@/data/siteData";
 
-const PortfolioSection = () => (
-  <section id="portfolio" className="section-padding bg-background">
-    <div className="container-custom">
-      <div className="mb-12 text-center">
-        <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-secondary">Our Work</span>
-        <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">Featured Projects</h2>
-        <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">A selection of projects we're proud to have delivered.</p>
+const PortfolioSection = () => {
+  return (
+    <section id="portfolio" className="py-20 bg-muted/30">
+      <div className="container-custom">
+
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <p className="text-primary font-semibold uppercase tracking-widest">
+            OUR WORK
+          </p>
+          <h2 className="mt-2 text-4xl font-display font-bold">
+            Featured Projects
+          </h2>
+          <p className="text-muted-foreground mt-3">
+            A selection of projects we’re proud to have delivered.
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {portfolioItems.map((item, i) => (
+            <a
+              key={i}
+              href={item.link}
+              target="_blank"
+              className="group rounded-2xl bg-white shadow-md overflow-hidden hover:shadow-xl transition"
+            >
+              <img
+                src={item.image}
+                className="h-48 w-full object-cover group-hover:scale-105 transition"
+              />
+
+              <div className="p-5">
+                <h3 className="font-semibold text-lg">{item.title}</h3>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {item.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {portfolioItems.map((item) => (
-          <div key={item.title} className="group relative overflow-hidden rounded-2xl shadow-lg">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="text-xs font-semibold uppercase tracking-wider text-secondary">{item.category}</span>
-              <h3 className="font-display text-xl font-bold text-primary-foreground">{item.title}</h3>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default PortfolioSection;

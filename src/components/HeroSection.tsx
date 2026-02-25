@@ -8,24 +8,44 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/30 pt-24 pb-16 md:pt-32 md:pb-24">
+   <section className="relative z-10 overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
+
+{/* Background Image */}
+
+<div className="absolute inset-0 z-0 overflow-hidden">
+  <img
+    src="/hero-bg.png"
+    alt="hero"
+    className="w-full h-full object-cover scale-105 blur-sm"
+  />
+
+  {/* dark overlay */}
+  <div className="absolute inset-0 bg-black/60"></div>
+</div>
+
+
       {/* Decorative blobs */}
-      <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-white/20 text-white backdrop-blur-sm
+ blur-3xl" />
       <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
 
       <div className="container-custom relative z-10 px-4 md:px-8 lg:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left */}
           <div className="animate-fade-in">
-            <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
-              Digital Solutions Partner
+            <span className="mb-4 inline-block rounded-full bg-white/20 text-white backdrop-blur-sm
+ px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+              Dizi Global Solutions
             </span>
-            <h1 className="font-display text-4xl font-extrabold leading-tight text-foreground md:text-5xl lg:text-6xl">
-              Building Digital
-              <span className="text-primary"> Experiences</span> That Matter
+            <h1 className="font-display text-4xl font-extrabold leading-tight text-white drop-shadow-lg
+ md:text-5xl lg:text-6xl">
+              High-Performing Website Design in Oman – Starting at
+              <span className="text-primary">– Just OMR 120 Only!</span> 
             </h1>
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              We craft innovative software solutions that empower businesses to grow, scale, and thrive in the digital era.
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/90
+">
+          🚀 Launch a stunning, mobile-friendly, SEO-optimized website that helps your Oman business grow faster.<br></br>
+💼 Trusted by dozens of businesses across Muscat, Salalah, Sohar, Nizwa & Sur.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button size="lg" onClick={() => scrollTo("#services")}>
@@ -51,9 +71,12 @@ const HeroSection = () => {
 
           {/* Right — Contact Form */}
           <div className="animate-fade-in-right" id="contact">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-xl md:p-8">
-              <h3 className="mb-1 font-display text-xl font-bold text-card-foreground">Get in Touch</h3>
-              <p className="mb-5 text-sm text-muted-foreground">Fill out the form and we'll respond within 24 hours.</p>
+              <div className="bg-white rounded-xl shadow-lg p-5 w-full max-w-sm mx-auto">
+    
+    <h3 className="text-base font-semibold text-center mb-3">
+      Get a Free Quote Now!!
+    </h3>
+          
               <ContactForm />
             </div>
           </div>

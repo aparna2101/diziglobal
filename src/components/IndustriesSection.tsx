@@ -1,27 +1,62 @@
 import { industries } from "@/data/siteData";
 
-const IndustriesSection = () => (
-  <section className="section-padding bg-muted/50">
-    <div className="container-custom">
-      <div className="mb-12 text-center">
-        <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-secondary">Industries</span>
-        <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">Industries We Serve</h2>
+const IndustriesSection = () => {
+  return (
+    <section className="bg-white py-20 md:py-28" id="industries">
+      <div className="container-custom px-4 text-center">
+
+        {/* heading */}
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+          INDUSTRIES WE WORK WITH IN OMAN
+        </p>
+
+        <h2 className="mt-3 text-3xl md:text-5xl font-bold">
+          We Build Websites For Over 50+ Industries
+        </h2>
+
+        <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
+          We've worked with businesses across many industries, giving us deep
+          insight into what each sector needs.
+        </p>
+
+        {/* GRID EXACT STYLE */}
+        <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
+
+          {industries.map((item, i) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={i}
+                className="
+                  bg-white
+                  border
+                  border-gray-200
+                  rounded-lg
+                  p-6
+                  flex flex-col
+                  items-center
+                  justify-center
+                  shadow-sm
+                  hover:shadow-md
+                  hover:-translate-y-1
+                  transition
+                "
+              >
+                {/* colored icon */}
+                <Icon className={`h-9 w-9 ${item.color} mb-4`} />
+
+                <p className="text-sm font-semibold text-gray-800">
+                  {item.label}
+                </p>
+              </div>
+            );
+          })}
+
+        </div>
       </div>
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-        {industries.map((ind) => (
-          <div
-            key={ind.label}
-            className="flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <ind.icon className="h-7 w-7" />
-            </div>
-            <span className="text-sm font-semibold text-card-foreground">{ind.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default IndustriesSection;
